@@ -1,7 +1,7 @@
 int WORLD_SIZE = 600;
 PVector userPos;
 PVector pos, look;
-PVector ang;
+float angX, angY;
 PGraphics userView, droneView;
 
 float droneSpeed;
@@ -12,9 +12,10 @@ void setup() {
   userPos = new PVector(0, -50, WORLD_SIZE/2);
   pos = new PVector(0, 0, 100);
 
-  ang = new PVector(0.0, 0.0);
-  float phi = ang.x;
-  float theta = ang.y;
+  angX = 0;
+  angY = 0;
+  float phi = angX;
+  float theta = angY;
   float x = 10.0 * sin(phi) * cos(theta);
   float y = 10.0 * sin(phi) * sin(theta);
   float z = 10.0 * cos(phi);
@@ -35,7 +36,7 @@ void draw() {
 
 
   //**** CHANGE ME START****
-  ang.x = map(mouseX, 0, width, -PI, PI);
+  angX = map(mouseX, 0, width, -PI, PI);
   PVector v;
   if (keyPressed) {
     switch(key) {
@@ -61,8 +62,8 @@ void draw() {
 }
 
 void updateLook() {
-  float phi = ang.x;
-  float theta = -ang.y;
+  float phi = angX;
+  float theta = -angY;
   float x = 10.0 * sin(phi) * cos(theta);
   float y = 10.0 * sin(phi) * sin(theta);
   float z = 10.0 * cos(phi);

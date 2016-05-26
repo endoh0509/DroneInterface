@@ -13,9 +13,9 @@ void drawUserView() {
   userView.translate(pos.x, pos.y, pos.z);
   
   PMatrix3D yMat = new PMatrix3D();
-  yMat.rotateY(ang.x);
+  yMat.rotateY(angX);
   PMatrix3D xMat = new PMatrix3D();
-  yMat.rotateX(ang.y);
+  yMat.rotateX(angY);
   
   xMat.apply(yMat);
   userView.applyMatrix(xMat);
