@@ -3,4 +3,4 @@
 
 ---
 ## drone.pde
-drawDroneView()内でドローンからん視点を描画する．
+drawDroneView()内でドローンからの視点を描画する．

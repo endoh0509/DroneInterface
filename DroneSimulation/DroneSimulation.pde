@@ -4,6 +4,8 @@ PVector pos, look;
 PVector ang;
 PGraphics userView, droneView;
 
+float droneSpeed;
+
 void setup() {
   size(1200, 600, P2D);
 
@@ -18,7 +20,8 @@ void setup() {
   float z = 10.0 * cos(phi);
   look = new PVector(x, y, z);
   look.add(pos);
-
+  droneSpeed = 1;
+  
   userView = createGraphics(WORLD_SIZE, WORLD_SIZE, P3D);
   droneView = createGraphics(WORLD_SIZE, WORLD_SIZE, P3D);
 }
@@ -36,7 +39,9 @@ void draw() {
   if (keyPressed) {
     switch(key) {
     case 'f':
-      v = PVector.sub(look, pos).normalize().mult(1);
+      v = PVector.sub(look, pos);
+      v.normalize();
+      v.mult(1);
       pos.add(v);
       break;
     case 'u':
