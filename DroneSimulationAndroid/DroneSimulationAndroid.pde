@@ -7,7 +7,7 @@ float droneSpeed;
 boolean isUserView = true;
 
 void setup() {
-//  size(1200, 600, P3D);
+  size(1200, 600, P3D);
 
   userPos = new PVector(0, -50, WORLD_SIZE/2);
   pos = new PVector(0, 0, 100);
@@ -22,6 +22,7 @@ void setup() {
   look = new PVector(x, y, z);
   look.add(pos);
   droneSpeed = 1;
+  
 }
 
 void draw() {
@@ -72,6 +73,7 @@ void drawGround(int _num) {
   pushMatrix();
   rotateX(PI/2);
   translate(-WORLD_SIZE/2, -WORLD_SIZE/2, 0);
+  strokeWeight(1);
   stroke(0, 200, 0);
   noFill();
   for (int y = 0; y < WORLD_SIZE; y += WORLD_SIZE / _num) {
@@ -79,10 +81,12 @@ void drawGround(int _num) {
       rect(x, y, WORLD_SIZE / _num, WORLD_SIZE / _num);
     }
   }
+  //stroke(0);
+  //fill(0, 200, 0);
+  //rect(0, 0, WORLD_SIZE, WORLD_SIZE);
   popMatrix();
 }
 
-public String sketchRenderer() {
-  return P3D;
-}
-
+//public String sketchRenderer() {
+//  return P3D;
+//}

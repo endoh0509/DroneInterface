@@ -2,12 +2,12 @@ int WORLD_SIZE = 600;
 PVector userPos;
 PVector pos, look;
 float angX, angY;
-PGraphics userView, droneView;
 
 float droneSpeed;
+boolean isUserView = true;
 
 void setup() {
-  size(1200, 600, P2D);
+  size(1200, 600, P3D);
 
   userPos = new PVector(0, -50, WORLD_SIZE/2);
   pos = new PVector(0, 0, 100);
@@ -21,18 +21,15 @@ void setup() {
   float z = 10.0 * cos(phi);
   look = new PVector(x, y, z);
   look.add(pos);
-  droneSpeed = 1;
-
-  userView = createGraphics(WORLD_SIZE, WORLD_SIZE, P3D);
-  droneView = createGraphics(WORLD_SIZE, WORLD_SIZE, P3D);
+  droneSpeed = 1; 
 }
 
 void draw() {
-  image(userView, 0, 0);
-  image(droneView, userView.width, 0);
-
-  drawUserView();
-  drawDroneView();
+  if (isUserView == true) {
+    drawUserView();
+  } else {
+    drawDroneView();
+  }
 
 
   //**** CHANGE ME START****
@@ -61,6 +58,12 @@ void draw() {
   updateLook();
 }
 
+void keyPressed() {
+  if(key == 'v') {
+    isUserView = !isUserView;
+  }
+}
+
 void updateLook() {
   float phi = angX;
   float theta = -angY;
@@ -71,19 +74,20 @@ void updateLook() {
   look.add(pos);
 }
 
-void drawGround(PGraphics _pg, int _num) {
-  _pg.beginDraw();
-  _pg.pushMatrix();
-  _pg.rotateX(PI/2);
-  _pg.translate(-WORLD_SIZE/2, -WORLD_SIZE/2, 0);
-  _pg.stroke(0, 200, 0);
-  _pg.noFill();
+void drawGround(int _num) {
+  pushMatrix();
+  rotateX(PI/2);
+  translate(-WORLD_SIZE/2, -WORLD_SIZE/2, 0);
+  strokeWeight(1);
+  stroke(0, 200, 0);
+  noFill();
   for (int y = 0; y < WORLD_SIZE; y += WORLD_SIZE / _num) {
     for (int x = 0; x < WORLD_SIZE; x += WORLD_SIZE / _num) {
-      _pg.rect(x, y, WORLD_SIZE / _num, WORLD_SIZE / _num);
+      rect(x, y, WORLD_SIZE / _num, WORLD_SIZE / _num);
     }
   }
-  _pg.popMatrix();
-  _pg.endDraw();
+  //stroke(0);
+  //fill(0, 200, 0);
+  //rect(0, 0, WORLD_SIZE, WORLD_SIZE);
+  popMatrix();
 }
-

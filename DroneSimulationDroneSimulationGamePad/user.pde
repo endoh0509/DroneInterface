@@ -1,6 +1,6 @@
 void drawUserView() {
 
-  background(20);
+  background(0);
   drawGround(60);
   
   camera(
@@ -19,11 +19,10 @@ void drawUserView() {
   
   xMat.apply(yMat);
   applyMatrix(xMat);
-
+  
   //drone
-  strokeWeight(1);
-  stroke(0);
   fill(255);
+  stroke(0);
   box(10, 5, 10);
   
   //shadow
@@ -39,10 +38,13 @@ void drawUserView() {
 
   //***** drawAxis *****
   //X
+  pushStyle();
   strokeWeight(3);
   stroke(255, 0, 0);
-  line(0, 0, 0, 0, 0, 50);
-  
+  beginShape(LINES);
+  vertex(0, 0, 0);
+  vertex(0, 0, 50);
+  endShape();
   //Y
 //  userView.stroke(0, 255, 0);
 //  userView.beginShape(LINES);

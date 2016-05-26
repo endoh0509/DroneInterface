@@ -1,5 +1,5 @@
 void drawDroneView(){
-  background(20);
+  background(0);
   
   drawGround(60);
   
