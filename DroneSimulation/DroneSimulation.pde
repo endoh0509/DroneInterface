@@ -21,7 +21,7 @@ void setup() {
   look = new PVector(x, y, z);
   look.add(pos);
   droneSpeed = 1;
-  
+
   userView = createGraphics(WORLD_SIZE, WORLD_SIZE, P3D);
   droneView = createGraphics(WORLD_SIZE, WORLD_SIZE, P3D);
 }
@@ -33,15 +33,16 @@ void draw() {
   drawUserView();
   drawDroneView();
 
-  ang.x = map(mouseX, 0, width, -PI, PI);
 
+  //**** CHANGE ME START****
+  ang.x = map(mouseX, 0, width, -PI, PI);
   PVector v;
   if (keyPressed) {
     switch(key) {
     case 'f':
       v = PVector.sub(look, pos);
       v.normalize();
-      v.mult(1);
+      v.mult(droneSpeed);
       pos.add(v);
       break;
     case 'u':
@@ -54,6 +55,8 @@ void draw() {
       break;
     }
   }
+  //**** CHANGE ME END****
+
   updateLook();
 }
 
@@ -82,3 +85,4 @@ void drawGround(PGraphics _pg, int _num) {
   _pg.popMatrix();
   _pg.endDraw();
 }
+
